@@ -10,3 +10,7 @@ Change the exe path to path of the executable file (.exe) of the application you
 
 Press OK to save the settings. The settings are saved to a file so they only need to be set once.
 Use the hotkeys to start and stop the auto clicker.
+
+## Known Issues
+- May experience problems using hotkeys with modifiers
+- Hold may in some applications be registered as a click rather than as a hold

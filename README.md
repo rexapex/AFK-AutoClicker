@@ -1,4 +1,4 @@
-# AutoClicker
+# AFK AutoClicker
 
 Can be used to automatically click in any running application without the window needing to be in focus.
 

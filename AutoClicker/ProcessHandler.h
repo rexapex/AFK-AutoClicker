@@ -12,6 +12,6 @@ public:
 	HWND GetWnd() const { return hwnd; }
 
 private:
-	HWND hwnd;
+	HWND hwnd { NULL };
 };
 

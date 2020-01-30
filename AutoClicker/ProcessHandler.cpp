@@ -22,7 +22,7 @@ BOOL CALLBACK EnumWindowsProc(HWND hwnd,LPARAM lParam)
 	{
 		///	MessageBox(NULL, _T("Found Window"), _T("Found Window"), NULL);
 		TCHAR title[256];
-		GetWindowText(hwnd, title, sizeof(title));
+		GetWindowText(hwnd, title, sizeof title / sizeof(TCHAR));
 		///	MessageBox(NULL, title, title, NULL);
 		hWndToInjectInto = hwnd;
 		return FALSE;
@@ -75,10 +75,10 @@ bool ProcessHandler::FindWndOfProcess(TCHAR path[MAX_PATH])
 						break;
 					}
 				}
-			}
 
-			// Close the handle to the process
-			CloseHandle(hProcess);
+				// Close the handle to the process
+				CloseHandle(hProcess);
+			}
 		}
 	}
 

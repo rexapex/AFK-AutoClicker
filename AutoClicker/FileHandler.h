@@ -8,7 +8,9 @@ public:
 	~FileHandler();
 
 	void SaveSettingsToFile(Settings const &);
-	void LoadSettingsFromFile(Settings &);
+	bool LoadSettingsFromFile(Settings &);
+
+	bool FileExists(TCHAR * path);
 
 private:
 	void GetSettingsFilePath(TCHAR ** path);

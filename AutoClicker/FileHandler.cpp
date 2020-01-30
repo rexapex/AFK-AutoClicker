@@ -31,11 +31,17 @@ void FileHandler::SaveSettingsToFile(Settings const & s)
 	f.close();
 }
 
-void FileHandler::LoadSettingsFromFile(Settings & s)
+// Load user settings from a file
+// Returns true iff the settings file exists
+bool FileHandler::LoadSettingsFromFile(Settings & s)
 {
 	// Get the path of the settings file
 	TCHAR * path;
 	GetSettingsFilePath(&path);
+
+	// If the file doesn't exist, return false
+	if(!FileExists(path))
+		return false;
 
 	std::wifstream f;
 	f.open(path);
@@ -83,6 +89,8 @@ void FileHandler::LoadSettingsFromFile(Settings & s)
 			s.keyBindStopModifiers = wcstol(value.c_str(), NULL, 10);
 		}
 	}
+
+	return true;
 }
 
 void FileHandler::GetSettingsFilePath(TCHAR ** path)
@@ -101,4 +109,16 @@ void FileHandler::GetSettingsFilePath(TCHAR ** path)
 		PathAppend(szPath, _T("\\Settings.txt"));
 		*path = szPath;
 	}
+}
+
+// Check if a file exists
+// https://blog.kowalczyk.info/article/8h/check-if-file-exists-on-windows.html
+bool FileHandler::FileExists(TCHAR * path)
+{
+	DWORD fileAttr;
+
+	fileAttr = GetFileAttributes(path);
+	if (0xFFFFFFFF == fileAttr)
+		return false;
+	return true;
 }
